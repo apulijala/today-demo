@@ -1,0 +1,69 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fleetman-queue
+spec:
+  selector:
+    app: queue
+  type: ClusterIP
+  ports:
+  - name:  http
+    port:  8161
+  - name:  messages
+    port:  61616
+    
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fleetman-position-simulator
+spec:
+  selector:
+    app: position-simulator
+  type: ClusterIP
+  ports:
+  - name:  http
+    port:  8080
+    
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fleetman-position-tracker
+spec:
+  selector:
+    app: position-tracker
+  type: ClusterIP
+  ports:
+  - name:  http
+    port:  8080
+
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fleetman-api-gateway
+spec:
+  selector:
+     app: api-gateway
+  type: ClusterIP
+  ports:
+  - name:  http
+    port:  8080
+
+--- 
+
+kind: Service
+apiVersion: v1
+metadata:
+  name:  fleetman-webapp
+spec:
+  selector:
+     app: webapp
+  type: LoadBalancer
+  ports:
+  - name:  http
+    port:  80
